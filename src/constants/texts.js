@@ -1,0 +1,11 @@
+export const DISCOVER_POLL = 'Descobrir uma votação';
+export const ABOUT_US = 'Sobre Nós';
+export const HOME = 'Início';
+export const LOGIN = 'Entrar';
+export const SIGNUP = 'Criar conta';
+export const MAIN_TEXT_HP = 'Crie votações, ouça o público';
+export const MAIN_SUBTEXT_HP = 'Uma forma rápida, prática e democrática de compartilhar seu ponto de vista e descobrir a opinião de outras pessoas';
+export const MAIN_BUTTON = 'Começar agora';
+export const SUBMAIN_TEXT_HP = 'Descubra sobre o que o público está pensando';
+export const SUBMAIN_SUBTEXT_HP = 'Com o voter você pode descobrir um mundo de opiniões e pontos de vista completamente novo.';
+export const DISCOVER_POLL_BUTTON = 'Encontre uma votação';
