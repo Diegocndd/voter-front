@@ -1,0 +1,52 @@
+#main-container-createaccount {
+    padding-left: 500px;
+    padding-right: 500px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#title-create-account {
+    font-size: 30px;
+    text-align: center;
+}
+
+#button-create-account {
+    font-size: 15px;
+    background-color: #F56038;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.error-text {
+    color: red;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+.error-text-empty {
+    color: red;
+    font-weight: bold;
+}
+
+@media (max-width: 952px) {
+    #main-container-createaccount {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+}

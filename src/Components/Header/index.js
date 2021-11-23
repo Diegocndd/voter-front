@@ -56,7 +56,7 @@ function Header() {
       </div>
 
       <div id="login-signup-bar">
-        <div id="login-button">Entrar</div>
+        <div id="login-button" onClick={() => navigation('/login')}>Entrar</div>
         <div id="signup-button" onClick={() => navigation('/create-account')}>Criar conta</div>
       </div>
 
