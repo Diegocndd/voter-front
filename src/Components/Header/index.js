@@ -12,16 +12,38 @@ import {
   LOGIN,
   SIGNUP
 } from '../../constants/texts';
+import { useSelector, useDispatch } from 'react-redux';
+import logoutRequest from '../../services/logout';
+import {logoutUser} from '../../store/ducks/auth';
+import {clearUserData} from '../../store/ducks/userData';
 
 function Header() {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const currentLocation = location.pathname;
   const [showSideBar, setShowSideBar] = useState(false);
+  const {isLogged} = useSelector(
+    (store) => store.app.auth,
+  );
+  const userData = useSelector(
+    (store) => store.app.userData?.data[0],
+  );
 
   const goToScreen = (screen) => {
     setShowSideBar(false);
     navigation(screen);
+  }
+
+  const logout = () => {
+    const {username} = userData;
+    logoutRequest(username)
+      .then(res => {
+        dispatch(logoutUser());
+        dispatch(clearUserData());
+        navigation('/');
+      })
+      .catch(err => console.error(err));
   }
 
   return (
@@ -55,10 +77,17 @@ function Header() {
         </div>
       </div>
 
-      <div id="login-signup-bar">
-        <div id="login-button" onClick={() => navigation('/login')}>Entrar</div>
-        <div id="signup-button" onClick={() => navigation('/create-account')}>Criar conta</div>
-      </div>
+      {!isLogged ? (
+        <div id="login-signup-bar">
+          <div id="login-button" onClick={() => navigation('/login')}>Entrar</div>
+          <div id="signup-button" onClick={() => navigation('/create-account')}>Criar conta</div>
+        </div>
+      ) : (
+        <div id="login-signup-bar">
+          <div id="login-button" onClick={() => navigation('/profile')}>Perfil</div>
+          <div id="signup-button" onClick={() => navigation('/dashboard')}>Meu Painel</div>
+        </div> 
+      )}
 
       <div id="menu-logo-hamburger" onClick={() => setShowSideBar(true)}>
         <VscMenu color='#F56038' size={30} />
@@ -70,8 +99,18 @@ function Header() {
           <p className="text-sidebar" onClick={() => goToScreen('/')}>{HOME}</p>
           <p className="text-sidebar" onClick={() => goToScreen('/about-us')}>{ABOUT_US}</p>
           <p className="text-sidebar" onClick={() => goToScreen('/discover')}>{DISCOVER_POLL}</p>
-          <p className="text-sidebar" onClick={() => goToScreen('/login')}>{LOGIN}</p>
-          <p className="text-sidebar" onClick={() => goToScreen('/create-account')}>{SIGNUP}</p>
+          {!isLogged ? (
+            <>
+              <p className="text-sidebar" onClick={() => goToScreen('/login')}>{LOGIN}</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/create-account')}>{SIGNUP}</p>
+            </>
+          ) : (
+            <>
+              <p className="text-sidebar" onClick={() => goToScreen('/profile')}>Perfil</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/dashboard')}>Meu Painel</p>
+              <p className="text-sidebar" onClick={() => logout()}>Sair</p>
+            </> 
+          )}
         </div>
       </div>
     </div>
