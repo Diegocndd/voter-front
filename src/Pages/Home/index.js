@@ -2,6 +2,14 @@ import './styles.css';
 import Header from '../../Components/Header';
 import VotingImage from '../../assets/img/voting-homepage-voter.png';
 import TextingImage from '../../assets/img/texting-homepage-voter.png';
+import {
+  MAIN_TEXT_HP,
+  MAIN_SUBTEXT_HP,
+  MAIN_BUTTON,
+  SUBMAIN_TEXT_HP,
+  SUBMAIN_SUBTEXT_HP,
+  DISCOVER_POLL_BUTTON
+} from '../../constants/texts';
 
 function Home() {
   return (
@@ -11,14 +19,14 @@ function Home() {
         <div id="header-text-main-content-container">
           <div id="header-text-container">
             <p id="header-text-main-content">
-              Crie votações, ouça o público
+              {MAIN_TEXT_HP}
             </p>
             <p id="description-text-main-homepage">
-              Uma forma rápida, prática e democrática de compartilhar seu ponto de vista e descobrir a opinião de outras pessoas
+              {MAIN_SUBTEXT_HP}
             </p>
           </div>
           <div id="button-init-voter-homepage">
-            <p>Começar agora</p>
+            <p>{MAIN_BUTTON}</p>
           </div>
         </div>
         <img id="main-image-homepage" src={VotingImage}></img>
@@ -29,14 +37,14 @@ function Home() {
         <div id="header-text-main-content-container">
           <div id="header-text-container">
             <p id="header-text-main-content">
-              Descubra sobre o que o público está pensando
+              {SUBMAIN_TEXT_HP}
             </p>
             <p id="description-text-main-homepage">
-              Com o voter você pode descobrir um mundo de opiniões e pontos de vista completamente novo.
+              {SUBMAIN_SUBTEXT_HP}
             </p>
           </div>
           <div id="button-init-voter-homepage">
-            <p>Encontre uma votação</p>
+            <p>{DISCOVER_POLL_BUTTON}</p>
           </div>
         </div>
       </div>
