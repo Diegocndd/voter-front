@@ -1,0 +1,17 @@
+.input-text {
+    background-color: #F1F1F1;
+    border-width: 1px;
+    border-color: transparent;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title-input {
+    color: black;
+    margin-bottom: 7px;
+}
+
+#container-input {
+    width: 100%;
+}
