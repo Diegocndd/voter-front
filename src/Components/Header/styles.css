@@ -61,9 +61,33 @@ li {
     font-size: 15px;
 }
 
+#profile-dashboard-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 18%;
+    font-size: 15px;
+}
+
 #login-button {
     color: #F56038;
     cursor: pointer;
+}
+
+#logout-button {
+    color: #F56038;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#logout-container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 24%;
 }
 
 #signup-button {
@@ -100,8 +124,12 @@ li {
     cursor: pointer;
 }
 
-@media (max-width: 954px) {
+@media (max-width: 1200px) {
     ul {
+        display: none;
+    }
+
+    #profile-dashboard-bar {
         display: none;
     }
 

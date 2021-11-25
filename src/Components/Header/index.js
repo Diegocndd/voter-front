@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import logoutRequest from '../../services/logout';
 import {logoutUser} from '../../store/ducks/auth';
 import {clearUserData} from '../../store/ducks/userData';
+import { BiLogOut } from "react-icons/bi";
 
 function Header() {
   const navigation = useNavigate();
@@ -27,7 +28,7 @@ function Header() {
     (store) => store.app.auth,
   );
   const userData = useSelector(
-    (store) => store.app.userData?.data[0],
+    (store) => store.app.userData?.data,
   );
 
   const goToScreen = (screen) => {
@@ -41,7 +42,7 @@ function Header() {
       .then(res => {
         dispatch(logoutUser());
         dispatch(clearUserData());
-        navigation('/');
+        navigation('/login');
       })
       .catch(err => console.error(err));
   }
@@ -83,9 +84,13 @@ function Header() {
           <div id="signup-button" onClick={() => navigation('/create-account')}>Criar conta</div>
         </div>
       ) : (
-        <div id="login-signup-bar">
+        <div id="profile-dashboard-bar">
           <div id="login-button" onClick={() => navigation('/profile')}>Perfil</div>
           <div id="signup-button" onClick={() => navigation('/dashboard')}>Meu Painel</div>
+          <div id="logout-container" onClick={() => logout()}>
+            <BiLogOut color="#F56038" size={25} />
+            <div id="logout-button">Sair</div>
+          </div>
         </div> 
       )}
 
