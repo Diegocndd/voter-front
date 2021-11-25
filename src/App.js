@@ -11,6 +11,8 @@ import Discover from "./Pages/Discover";
 import CreateAccount from './Pages/CreateAccount';
 import Profile from './Pages/Profile';
 import Dashboard from './Pages/Dashboard';
+import ForgotPassword from './Pages/ForgotPassword';
+import SentEmail from './Pages/ForgotPassword/SentEmail';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
@@ -29,6 +31,8 @@ const App = () => {
                         <Route path="/discover" element={<Discover />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/forgot-password" element={<ForgotPassword />} />
+                        <Route path="/sent-email" element={<SentEmail />} />
                     </Routes>
                 </Router>
             </PersistGate>

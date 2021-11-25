@@ -40,6 +40,33 @@
     font-weight: bold;
 }
 
+#text-error-login {
+    color: red;
+    font-weight: bold;
+}
+
+#forgot-password-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+}
+
+#register-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    margin-top: -12px;
+}
+
+#text-forgot-password {
+    cursor: pointer;
+    color: #F56038;
+}
+
 @media (max-width: 952px) {
     #main-container-createaccount {
         padding-left: 10px;

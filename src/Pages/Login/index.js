@@ -15,12 +15,15 @@ function Login() {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [errorLogin, setErrorLogin] = useState(false);
 
   const questionCurrent = useSelector(
     (store) => store.app,
   );
 
   const validateLogin = () => {
+    setErrorLogin(false);
+
     loginRequest({login, password})
       .then(res => {
         let token = res.data;
@@ -33,7 +36,7 @@ function Login() {
           })
           .catch(err => console.error(err));
       })
-      .catch(err => console.error(err));
+      .catch(() => setErrorLogin(true));
   }
 
   return (
@@ -52,6 +55,17 @@ function Login() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
+        <div id="forgot-password-container">
+          <p id="text-forgot-password" onClick={() => navigation('/forgot-password')}>Esqueci minha senha</p>
+        </div>
+        <div id="register-button-container">
+          <p id="text-forgot-password" onClick={() => navigation('/register')}>Criar uma conta</p>
+        </div>
+        {errorLogin ? (
+          <div>
+            <p id="text-error-login">Usuário e/ou senha incorretos!</p>
+          </div>
+        ) : null}
         <div id="button-login" onClick={() => validateLogin()}>
           <p>ENTRAR</p>
         </div>

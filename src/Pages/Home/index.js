@@ -2,6 +2,8 @@ import './styles.css';
 import Header from '../../Components/Header';
 import VotingImage from '../../assets/img/voting-homepage-voter.png';
 import TextingImage from '../../assets/img/texting-homepage-voter.png';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 import {
   MAIN_TEXT_HP,
   MAIN_SUBTEXT_HP,
@@ -12,6 +14,11 @@ import {
 } from '../../constants/texts';
 
 function Home() {
+  const navigation = useNavigate();
+  const {isLogged} = useSelector(
+    (store) => store.app.auth,
+  );
+
   return (
     <div>
       <Header />
@@ -25,7 +32,7 @@ function Home() {
               {MAIN_SUBTEXT_HP}
             </p>
           </div>
-          <div id="button-init-voter-homepage">
+          <div id="button-init-voter-homepage" onClick={() => isLogged ? navigation('/dashboard') : navigation('/login')}>
             <p>{MAIN_BUTTON}</p>
           </div>
         </div>
@@ -43,7 +50,7 @@ function Home() {
               {SUBMAIN_SUBTEXT_HP}
             </p>
           </div>
-          <div id="button-init-voter-homepage">
+          <div id="button-init-voter-homepage" onClick={() => navigation('/discover')}>
             <p>{DISCOVER_POLL_BUTTON}</p>
           </div>
         </div>
