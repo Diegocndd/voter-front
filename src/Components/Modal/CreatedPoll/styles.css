@@ -1,0 +1,57 @@
+#title-modal-created {
+    color: #F56038;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#content-modal-create-poll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#social-icons-modal {
+    width: 14%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#subtitle-link-create-poll {
+    text-align: center;
+}
+
+#header-modal-create-poll {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#container-icon-close-modal {
+    width: 80%;
+    margin-top: 30px;
+}
+
+#icon-close-modal {
+    float: right;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    #social-icons-modal {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 900px) {
+    #social-icons-modal {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

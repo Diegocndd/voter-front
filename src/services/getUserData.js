@@ -1,16 +1,10 @@
 import api from "./api";
+import {store} from '../store';
 
-const dataRequest = (userData) => {
-    const {username, token} = userData;
+const dataRequest = () => {
+    let token = store.getState().app.auth.token;
 
-    const data = {
-        username: username,
-        token: token,
-    };
-
-    return api.get('/get-user-data', {
-        params: data,
-    });
+    return api.get('/get-user-data', { headers: { Authorization: 'Bearer ' + token }});
 }
 
 export default dataRequest;

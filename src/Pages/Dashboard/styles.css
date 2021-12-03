@@ -1,0 +1,72 @@
+#main-dashboard-container {
+    padding: 40px;
+}
+
+#dashboard-container {
+    /* background-color: #fcfcfc; */
+    padding: 50px;
+    height: 100vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /* -webkit-box-shadow: 9px -5px 16px -3px rgba(0,0,0,0.23);  */
+    /* box-shadow: 9px -5px 16px -3px rgba(0,0,0,0.23); */
+}
+
+#current-polls {
+    color: #56D21C;
+    font-weight: 500;
+}
+
+#closed-polls {
+    color: #F53333;
+    font-weight: 500;
+}
+
+#button-add-poll {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 50px;
+	border-radius:50px;
+    cursor: pointer;
+}
+
+.container-poll {
+    width: 100%;
+    background-color: #F56038;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.container-poll:last-child {
+    margin-bottom: 0px;
+}
+
+#title-poll {
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+#qtd-votes-poll {
+    font-size: 14px;
+    margin-top: -16px;
+}
+
+.text-header-poll {
+    font-size: 18px;
+}
+
+#loading_icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}

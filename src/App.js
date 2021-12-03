@@ -13,6 +13,10 @@ import Profile from './Pages/Profile';
 import Dashboard from './Pages/Dashboard';
 import ForgotPassword from './Pages/ForgotPassword';
 import SentEmail from './Pages/ForgotPassword/SentEmail';
+import CreatePoll from './Pages/CreatePoll.js';
+import PrivateRoute from './Pages/PrivateRoute';
+import Poll from './Pages/Poll';
+import PollDetail from './Pages/PollDetail';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
@@ -29,10 +33,13 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path="/discover" element={<Discover />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+                        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+                        <Route path="/create-poll" element={<PrivateRoute><CreatePoll /></PrivateRoute>} />
+                        <Route path="/poll-detail" element={<PrivateRoute><PollDetail /></PrivateRoute>} />
                         <Route path="/forgot-password" element={<ForgotPassword />} />
                         <Route path="/sent-email" element={<SentEmail />} />
+                        <Route path="/poll" element={<Poll />} />
                     </Routes>
                 </Router>
             </PersistGate>

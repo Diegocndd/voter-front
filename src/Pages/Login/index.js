@@ -27,12 +27,15 @@ function Login() {
     loginRequest({login, password})
       .then(res => {
         let token = res.data;
-        let username = login;
         dispatch(loginUser(token));
-        dataRequest({username, token})
+        dataRequest()
           .then(result => {
-            dispatch(setUserData(result.data));
-            navigation('/dashboard');
+            if (result.status === 200) {
+              dispatch(setUserData(result.data));
+              navigation('/dashboard');
+            } else {
+              setErrorLogin(true);
+            }
           })
           .catch(err => console.error(err));
       })

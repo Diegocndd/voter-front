@@ -9,8 +9,7 @@ import {
   DISCOVER_POLL,
   ABOUT_US,
   HOME,
-  LOGIN,
-  SIGNUP
+  MENU,
 } from '../../constants/texts';
 import { useSelector, useDispatch } from 'react-redux';
 import logoutRequest from '../../services/logout';
@@ -80,16 +79,16 @@ function Header() {
 
       {!isLogged ? (
         <div id="login-signup-bar">
-          <div id="login-button" onClick={() => navigation('/login')}>Entrar</div>
-          <div id="signup-button" onClick={() => navigation('/create-account')}>Criar conta</div>
+          <div id="login-button" onClick={() => navigation('/login')}>{MENU.LOGIN}</div>
+          <div id="signup-button" onClick={() => navigation('/create-account')}>{MENU.CREATE_ACCOUNT}</div>
         </div>
       ) : (
         <div id="profile-dashboard-bar">
-          <div id="login-button" onClick={() => navigation('/profile')}>Perfil</div>
-          <div id="signup-button" onClick={() => navigation('/dashboard')}>Meu Painel</div>
+          <div id="login-button" onClick={() => navigation('/profile')}>{MENU.PROFILE}</div>
+          <div id="signup-button" onClick={() => navigation('/dashboard')}>{MENU.DASHBOARD}</div>
           <div id="logout-container" onClick={() => logout()}>
             <BiLogOut color="#F56038" size={25} />
-            <div id="logout-button">Sair</div>
+            <div id="logout-button">{MENU.LOGOUT}</div>
           </div>
         </div> 
       )}
@@ -106,13 +105,13 @@ function Header() {
           <p className="text-sidebar" onClick={() => goToScreen('/discover')}>{DISCOVER_POLL}</p>
           {!isLogged ? (
             <>
-              <p className="text-sidebar" onClick={() => goToScreen('/login')}>{LOGIN}</p>
-              <p className="text-sidebar" onClick={() => goToScreen('/create-account')}>{SIGNUP}</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/login')}>{MENU.LOGIN}</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/create-account')}>{MENU.CREATE_ACCOUNT}</p>
             </>
           ) : (
             <>
-              <p className="text-sidebar" onClick={() => goToScreen('/profile')}>Perfil</p>
-              <p className="text-sidebar" onClick={() => goToScreen('/dashboard')}>Meu Painel</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/profile')}>{MENU.PROFILE}</p>
+              <p className="text-sidebar" onClick={() => goToScreen('/dashboard')}>{MENU.DASHBOARD}</p>
               <p className="text-sidebar" onClick={() => logout()}>Sair</p>
             </> 
           )}
