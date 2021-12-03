@@ -1,0 +1,36 @@
+#option-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#visibility-poll {
+    display: flex;
+    flex-direction: column;
+}
+
+#radio-input:last-child {
+    margin-top: -15px;
+}
+
+#title-visibility {
+    margin-bottom: 0px;
+}
+
+.option-poll-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input-poll-option {
+    width: 90%;
+    margin-right: 10px;
+    height: 30px;
+    border-color: #F56038;
+    border-radius: 5px;
+    border-style:solid;
+    color: #F56038;
+}
