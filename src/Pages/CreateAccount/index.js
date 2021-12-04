@@ -82,7 +82,6 @@ function CreateAccount() {
             navigation('/login');
           }
         })
-        .catch(err => console.log(err));
     }
 
   }

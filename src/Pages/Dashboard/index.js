@@ -48,7 +48,6 @@ function Dashboard() {
             </div>
             <p id="current-polls" className="text-header-poll">{IN_PROGRESS_POLL}</p>
               {userPolls.map(poll => {
-                console.log(poll);
                 if (!poll.closed) {
                   return (
                     <div className="container-poll" onClick={() => navigation(`/poll-detail?id=${poll.id_poll}`)}>
