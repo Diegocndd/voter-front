@@ -1,0 +1,33 @@
+#content-poll-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 35px;
+}
+
+#title-poll-detail {
+    color: #F56038;
+    font-weight: 600;
+    font-size: 40px;
+    padding-bottom: 40px;
+}
+
+#url-poll-container {
+    background-color: #E6E6E6;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 20px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+#url-poll-text {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.votes-poll-text {
+    padding-top: 10px;
+    font-size: 19px;
+}
