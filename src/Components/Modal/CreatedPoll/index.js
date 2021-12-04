@@ -7,7 +7,7 @@ import { VscChromeClose } from "react-icons/vsc";
 
 function CreatedPollModal({ idPoll }) {
   const [modalIsOpen, setIsOpen] = useState(true);
-  let url = `http://localhost:3000/poll?id=${idPoll}`;
+  let url = `http://192.168.15.5:3000/poll?id=${idPoll}`;
   let encodedUrl = url;
 
   function closeModal() {
