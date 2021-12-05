@@ -14,6 +14,13 @@
     flex-direction: column;
 }
 
+#container-public-poll2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .alternative-container {
     display: flex;
     flex-direction: row-reverse;
@@ -54,4 +61,28 @@
 #container-alert-visitor {
     margin-top: 0px;
     padding: 17px;
+}
+
+#not-found-image-poll {
+    width: 700px;
+}
+
+#text-not-found-poll {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0.7;
+}
+
+#subtext-not-found-poll {
+    text-align: center;
+    margin-top: -10px;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+    #not-found-image-poll {
+        width: 450px;
+    }
 }
