@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { AiFillPlusCircle } from "react-icons/ai";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import EmptyDashboard from '../../assets/img/empty-dashboard.png';
 import getPolls from '../../services/getPolls';
 import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
 import CreatedPollModal from '../../Components/Modal/CreatedPoll';
@@ -34,6 +35,50 @@ function Dashboard() {
       });
   }, []);
 
+  const ISOStringToNormalDate = (oldDate) => {
+    return oldDate.split('T')[0] + ' ' + oldDate.split('T')[1].split('.')[0];
+  }
+
+  const isClosedDate = (poll) => {
+    const limitDatePoll = poll.limit_date;
+    console.log(poll);
+    if (limitDatePoll) {
+      const tzoffset = (new Date()).getTimezoneOffset() * 60000;
+      const localISODate = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+      const actualDate = ISOStringToNormalDate(localISODate);
+      const limitDate = ISOStringToNormalDate(limitDatePoll);
+    
+      const date1Updated = new Date(actualDate.replace(/-/g,'/'));  
+      const date2Updated = new Date(limitDate.replace(/-/g,'/'));
+
+      return(date1Updated > date2Updated);
+    }
+  }
+
+  const renderPoll = (poll) => {
+    return (
+      <div className="container-poll" onClick={() => navigation(`/poll-detail?id=${poll.id_poll}`)}>
+        <div id="title-poll-container">
+          <p id="title-poll">{poll.title.substring(0, 35)}{poll.title.length >= 35 ? '...' : null}</p>
+        </div>
+        <div id="qty_votes-container">
+          {poll.qty_votes === 0 ? (
+            <p>Não há votos ainda</p>
+          ) : (
+            <p>{poll.qty_votes} {poll.qty_votes === 1 ? 'voto' : 'votos'}</p>
+          )}
+        </div>
+        <div id="progress-poll-container">
+          {!isClosedDate(poll) ? (
+            <p>Em andamento</p>
+          ) : (
+            <p>Encerrada</p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />
@@ -46,29 +91,20 @@ function Dashboard() {
             <div id="button-add-poll" onClick={() => navigation('/create-poll')}>
               <AiFillPlusCircle size={60} color="#3c2a4d" id="button-poll" />
             </div>
-            <p id="current-polls" className="text-header-poll">{IN_PROGRESS_POLL}</p>
-              {userPolls.map(poll => {
-                if (!poll.closed) {
-                  return (
-                    <div className="container-poll" onClick={() => navigation(`/poll-detail?id=${poll.id_poll}`)}>
-                      <p id="title-poll">{poll.title}</p>
-                      <p id="qtd-votes-poll">Quantidade de Votos: {poll.qty_votes}</p>
-                      <p>http://localhost:3000/poll?id={poll.id_poll}</p>
-                    </div>
-                  );
-                }
-              })}
-            <p id="closed-polls" className="text-header-poll">{CLOSED_POLL}</p>
-              {userPolls.map(poll => {
-                if (poll.closed) {
-                  return (
-                    <div className="container-poll" onClick={() => navigation(`/poll-detail?id=${poll.id_poll}`)}>
-                      <p id="title-poll">{poll.title}</p>
-                      <p id="qtd-votes-poll">Quantidade de Votos: {poll.qty_votes}</p>
-                    </div>
-                  );
-                }
-              })}
+            {userPolls.length > 0 ? (
+              <p id="header-dashboard-title">Suas Votações</p>
+            ) : (
+              <div id="text-empty-board-container">
+                <p>Você ainda não possui votações!</p>
+              </div>
+            )}
+            {userPolls.length > 0 ? (
+              userPolls.map(poll => renderPoll(poll))
+            ) : (
+              <div id="img-empty-board">
+                <img src={EmptyDashboard} id="empty-board-image"></img>
+              </div>
+            )}
           </div>
         ) : (
           <div id="loading_icon">
