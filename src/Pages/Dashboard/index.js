@@ -41,7 +41,6 @@ function Dashboard() {
 
   const isClosedDate = (poll) => {
     const limitDatePoll = poll.limit_date;
-    console.log(poll);
     if (limitDatePoll) {
       const tzoffset = (new Date()).getTimezoneOffset() * 60000;
       const localISODate = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);

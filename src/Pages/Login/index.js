@@ -62,7 +62,7 @@ function Login() {
           <p id="text-forgot-password" onClick={() => navigation('/forgot-password')}>Esqueci minha senha</p>
         </div>
         <div id="register-button-container">
-          <p id="text-forgot-password" onClick={() => navigation('/register')}>Criar uma conta</p>
+          <p id="text-forgot-password" onClick={() => navigation('/create-account')}>Criar uma conta</p>
         </div>
         {errorLogin ? (
           <div>
