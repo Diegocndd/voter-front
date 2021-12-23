@@ -1,22 +1,27 @@
-import Header from '../../Components/Header';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
+
+import Header from '../../Components/Header';
+import ChatPoll from '../../Components/ChartPoll';
+
 import getPoll from '../../services/public/getPoll';
 import getAlternatives from '../../services/public/getAlternatives';
-import FingerprintJS from '@fingerprintjs/fingerprintjs'
-import './styles.css';
-import NotFoundImage from '../../assets/img/not-found-poll.png';
 import visiterAlreadyVote from '../../services/public/visiterAlreadyVote';
 import votePoll from '../../services/public/votePoll';
 import getUser from '../../services/public/getUser';
-import ChatPoll from '../../Components/ChartPoll';
-import { useNavigate } from 'react-router';
 import isClosedPoll from '../../services/public/isClosedPoll';
-import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
 
-const fpPromise = FingerprintJS.load()
+import alt from '../../constants/altsImg';
+import NotFoundImage from '../../assets/img/not-found-poll.png';
+import colors from '../../constants/colors';
+import './styles.css';
+
+const fpPromise = FingerprintJS.load();
 
 function Poll() {
-  const navigation = useNavigate();
   const [loadingData, setLoadingData] = useState(true);
   const [pollData, setPollData] = useState({});
   const [idPoll, setIdPoll] = useState(null);
@@ -109,7 +114,7 @@ function Poll() {
       <div id="container-public-poll">
         {loadingData ? (
           <div id="loading_icon">
-            <Hypnosis color={'#F56038'} width="100px" height="100px" />
+            <Hypnosis color={colors.MAIN_COLOR} width="100px" height="100px" />
           </div>
           ) : (
           <div>
@@ -148,7 +153,7 @@ function Poll() {
                 <div style={{marginTop: -40}}>
                   <p id="text-not-found-poll">Não encontramos a votação!</p>
                   <p id="subtext-not-found-poll">Verifique se o endereço está correto.</p>
-                  <img src={NotFoundImage} id="not-found-image-poll"></img>
+                  <img src={NotFoundImage} id="not-found-image-poll" alt={alt.NOT_FOUND_POLL}></img>
                 </div>
               )}</div>
             )}

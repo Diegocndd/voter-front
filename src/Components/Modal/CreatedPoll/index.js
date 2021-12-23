@@ -1,13 +1,17 @@
-import './styles.css';
+import { useState } from 'react';
+
 import Modal from 'react-modal';
 import QRCode from 'react-qr-code';
-import { useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { VscChromeClose } from "react-icons/vsc";
 
+import { IP_SERVICE } from '../../../constants/api';
+
+import './styles.css';
+
 function CreatedPollModal({ idPoll }) {
   const [modalIsOpen, setIsOpen] = useState(true);
-  let url = `http://192.168.15.5:3000/poll?id=${idPoll}`;
+  let url = `http://${IP_SERVICE}:3000/poll?id=${idPoll}`;
   let encodedUrl = url;
 
   function closeModal() {

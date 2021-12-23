@@ -2,6 +2,7 @@ import './styles.css';
 import Header from '../../Components/Header';
 import VotingImage from '../../assets/img/voting-homepage-voter.png';
 import TextingImage from '../../assets/img/texting-homepage-voter.png';
+import alt from '../../constants/altsImg';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import {
@@ -36,11 +37,11 @@ function Home() {
             <p>{MAIN_BUTTON}</p>
           </div>
         </div>
-        <img id="main-image-homepage" src={VotingImage}></img>
+        <img id="main-image-homepage" src={VotingImage} alt={alt.VOTING_IMAGE}></img>
       </div>
 
       <div id="second-content-homepage">
-        <img id="main-image-homepage" src={TextingImage}></img>
+        <img id="main-image-homepage" src={TextingImage} alt={alt.CHOOSING_IMAGE}></img>
         <div id="header-text-main-content-container">
           <div id="header-text-container">
             <p id="header-text-main-content">

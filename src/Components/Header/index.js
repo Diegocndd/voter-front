@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import logoutRequest from '../../services/logout';
 import {logoutUser} from '../../store/ducks/auth';
 import {clearUserData} from '../../store/ducks/userData';
+import alt from '../../constants/altsImg';
 import { BiLogOut } from "react-icons/bi";
 
 function Header() {
@@ -49,8 +50,8 @@ function Header() {
   return (
     <div id="header-container">
       <div id="header-left-container">
-        <div id="logo-voter">
-          <img src={logo} width={110} alt="desc"></img>
+        <div id="logo-voter" onClick={() => navigation('/')}>
+          <img src={logo} width={110} alt={alt.LOGO_VOTER}></img>
         </div>
 
         <div id="list-header">
