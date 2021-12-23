@@ -19,7 +19,7 @@ function PollDetail() {
   const [isClosedDate, setIsClosedDate] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
-  const url = `http://192.168.15.8:3000/poll?id=${queryParams.get('id')}`;
+  const url = `http://192.168.15.3:3000/poll?id=${queryParams.get('id')}`;
 
   const formatAlternatives = (alternativesOpts) => {
     let alternativesFormat = [];
@@ -55,6 +55,7 @@ function PollDetail() {
 
   useEffect(() => {
     const limitDatePoll = pollData.limit_date;
+    console.log('aaaa', limitDatePoll);
     if (limitDatePoll) {
       const tzoffset = (new Date()).getTimezoneOffset() * 60000;
       const localISODate = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);

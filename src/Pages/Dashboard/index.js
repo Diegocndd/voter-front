@@ -1,23 +1,25 @@
-import './styles.css';
-import Header from '../../Components/Header';
-import { useSelector } from 'react-redux';
-import { AiFillPlusCircle } from "react-icons/ai";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import EmptyDashboard from '../../assets/img/empty-dashboard.png';
-import getPolls from '../../services/getPolls';
-import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
+import { useSelector } from 'react-redux';
+
+import Header from '../../Components/Header';
 import CreatedPollModal from '../../Components/Modal/CreatedPoll';
-import {IN_PROGRESS_POLL, CLOSED_POLL} from '../../constants/texts';
+
+import { AiFillPlusCircle } from "react-icons/ai";
+import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
+
+import EmptyDashboard from '../../assets/img/empty-dashboard.png';
+import alt from '../../constants/altsImg';
+import colors from '../../constants/colors';
+import getPolls from '../../services/getPolls';
+
+import './styles.css';
 
 function Dashboard() {
   const navigation = useNavigate();
   const [userPolls, setUserPolls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [createdPoll, setCreatedPoll] = useState(false);
-  const userData = useSelector(
-    store => store.app.userData.data,
-  );
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -101,13 +103,13 @@ function Dashboard() {
               userPolls.map(poll => renderPoll(poll))
             ) : (
               <div id="img-empty-board">
-                <img src={EmptyDashboard} id="empty-board-image"></img>
+                <img src={EmptyDashboard} id="empty-board-image" alt={alt.EMPTY_DASHBOARD}></img>
               </div>
             )}
           </div>
         ) : (
           <div id="loading_icon">
-            <Hypnosis color={'#F56038'} width="100px" height="100px" />
+            <Hypnosis color={colors.MAIN_COLOR} width="100px" height="100px" />
           </div>
         )}
       </div>

@@ -1,7 +1,7 @@
 import './styles.css';
 import Header from '../../Components/Header';
 import InputText from '../../Components/InputText';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import loginRequest from '../../services/login';
