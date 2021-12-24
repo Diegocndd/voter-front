@@ -22,6 +22,10 @@
   width: 25%;
 }
 
+#header-text-submain-content-container {
+  width: 25%;
+}
+
 #button-init-voter-homepage {
   background-color: #F56038;
   border-radius: 5px;
@@ -45,6 +49,20 @@
   width: 700px;
 }
 
+#submain-image-homepage {
+  margin-top: 30px;
+  width: 700px;
+}
+
+.show-slide-container {
+  position: absolute;
+  left: -30em;
+  width: 30em;
+  height: 20em;
+  -webkit-animation: slide-in 1s forwards;
+  animation: slide-in 1s forwards;
+}
+
 @media (max-width: 952px) {
   #main-content-homepage {
     display: flex;
@@ -61,6 +79,10 @@
   }
 
   #header-text-main-content-container {
+    width: 70%;
+  }
+
+  #header-text-submain-content-container {
     width: 70%;
   }
 

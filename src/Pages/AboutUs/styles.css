@@ -1,0 +1,44 @@
+#main-content-aboutus {
+    height: 91vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#text-aboutus {
+    color: #F56038;
+    width: 36%;
+}
+
+#title-aboutus {
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.text-aboutus-middle {
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+#image-option-aboutus {
+    width: 600px;
+}
+
+@media (max-width: 952px) {
+    #main-content-aboutus {
+        height: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #text-aboutus {
+        width: 70%;
+    }
+
+    #image-option-aboutus {
+        width: 400px;
+    }
+}

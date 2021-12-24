@@ -4,6 +4,7 @@ const alt = {
     'VOTING_IMAGE': 'Homem apertando botão de votação',
     'CHOOSING_IMAGE': 'Mulher escolhendo opção',
     'NOT_FOUND_POLL': 'Homem perdido olhando para um mapa',
+    'ABOUT_US': 'Mulher segurando um balão de fala e uma opção de escolha',
 };
 
 export default alt;

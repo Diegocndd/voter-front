@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
@@ -35,13 +34,13 @@ function Poll() {
   const [chosenAlternativeId, setChosenAlternativeId] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
 
-  const loadData = (responseFst, responseSnd) => {
-    if (responseFst && responseSnd) setLoadingData(false);
+  const loadData = (responseFst, responseSnd, responseTrd) => {
+    if (responseFst && responseSnd && responseTrd) setLoadingData(false);
   }
 
   useEffect(() => {
     let idPoll = queryParams.get('id');
-    let responseFst, responseSnd = false;
+    let responseFst, responseSnd, responseTrd = false;
 
     setIdPoll(idPoll);
 
@@ -53,8 +52,16 @@ function Poll() {
           setVisitorId(result.visitorId);
     
           visiterAlreadyVote({idPoll, idVisitor: result.visitorId})
-            .then(res => setUserVoted(res.data === "True"))
-            .catch(err => setUserVoted(false));
+            .then(res => {
+              responseTrd = true;
+              loadData(responseFst, responseSnd, responseTrd);
+              setUserVoted(res.data === "True")
+            })
+            .catch(err => {
+              responseTrd = true;
+              loadData(responseFst, responseSnd, responseTrd);
+              setUserVoted(false)
+            });
         })();
 
         setErrorNotPollFound(false);
@@ -63,7 +70,7 @@ function Poll() {
           .then(result => {
             if (result.status === 200) {
               responseFst = true;
-              loadData(responseFst, responseSnd);
+              loadData(responseFst, responseSnd, responseTrd);
               setAlternatives(result.data);
               getUser(res.data.id_user)
                 .then(resultUser => setPollCreator(resultUser.data))
@@ -78,8 +85,6 @@ function Poll() {
         loadData(responseFst, responseSnd);
         setIsPollClosed(isClosed.data === 'Yes');
       });
-
-    
   }, []);
 
   useEffect(() => {
