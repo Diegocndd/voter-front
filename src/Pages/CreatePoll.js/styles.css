@@ -26,6 +26,9 @@
 
 .option-poll-container {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .option-poll-container:last-child {
@@ -39,6 +42,14 @@
 .input-poll-option {
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-color: transparent;
+    background-color: #d2d2d2;
+    font-size: 15px;
+    width: 80%;
+    border-radius: 12px;
+    margin-right: 10px;
 }
 
 #icons-add-remove {
@@ -94,8 +105,9 @@
     background-color: #F56038;
     border: none;
     padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 20px;
-    width: 50px;
     border-radius: 10px;
     color: white;
 }
@@ -111,4 +123,8 @@
         align-items: center;
         display: flex;
     }
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
 }
