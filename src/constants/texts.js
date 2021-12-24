@@ -20,7 +20,7 @@ export const MENU = {
 export const IN_PROGRESS_POLL = 'Em andamento';
 export const CLOSED_POLL = 'Encerradas';
 export const CREATE_POLL = {
-    CREATE_POLL: 'Criar Enquete',
+    CREATE_POLL: 'Criar Votação',
     DEADLINE: 'Data de Encerramento',
     CLOSE_HOUR: 'Horário de Encerramento',
     POLL_VISIBILITY: 'Visibilidade da Votação',

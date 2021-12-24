@@ -8,6 +8,8 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import Calendar from 'react-calendar';
 import TimeField from 'react-simple-timefield';
+import ReactTooltip from 'react-tooltip';
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 import createPollAPI from '../../services/createPoll';
 import createAlternative from '../../services/createAlternative';
@@ -21,7 +23,6 @@ function CreatePoll() {
   const [title, setTitle] = useState('');
   const [qtyOptions, setQtyOptions] = useState(1);
   const [visibility, setVisibility] = useState('');
-  const [permission, setPermission] = useState('');
   const [limitDate, setLimitDate] = useState(new Date());
   const [timeDate, setTimeDate] = useState('');
   const [errorTitle, setErrorTitle] = useState(false);
@@ -66,10 +67,6 @@ function CreatePoll() {
 
   const visibilityPoll = (event) => {
     setVisibility(event.target.value);
-  }
-
-  const votesPermission = (event) => {
-    setPermission(event.target.value);
   }
 
   const createPoll = () => {
@@ -118,22 +115,16 @@ function CreatePoll() {
     if (!thereIsError) {
       const {id_user} = dataUser;
       let publicPoll = 1;
-      let free = 0;
 
       if (visibility === "privada") {
         publicPoll = 0;
       }
-
-      if (permission === "multipla") {
-        free = 1;
-      }
   
       let errorServer = false;
-      console.log('ssss', publicPoll);
+
       createPollAPI({
         title,
         id_user,
-        free,
         publicPoll,
         options,
         qty_options: qtyOptions,
@@ -160,12 +151,13 @@ function CreatePoll() {
   }
 
   const onTimeChange = (event, time) => {
-    setTimeDate(time);
+    setTimeDate(event.target.value);
   }
 
   return (
     <div>
       <Header />
+      <ReactTooltip />
       <div id="main-create-poll-container">
         <p id="title-create-poll">{CREATE_POLL.CREATE_POLL}</p>
         <div id="form-create-poll">
@@ -184,7 +176,8 @@ function CreatePoll() {
 
           <p id="title-visibility"><b>{CREATE_POLL.CLOSE_HOUR}</b></p>
           <div id="input-hour-container">
-            <TimeField value={'00:00'} onChange={onTimeChange} id="input-hour" />
+            <input type='time' id='input-hour' onChange={onTimeChange}></input>
+            {/* <TimeField value={'00:00  '} onChange={onTimeChange} id="input-hour" /> */}
           </div>
 
           <div>
@@ -192,27 +185,14 @@ function CreatePoll() {
             <div id="visibility-poll" onChange={visibilityPoll.bind(this)}>
               <div id="radio-input">
                 <input type="radio" id="public" name="visibility" value="publica" />
-                <p>{CREATE_POLL.PUBLIC}</p>
+                <p>{CREATE_POLL.PUBLIC}{'\u00A0'}</p>
+                <AiFillQuestionCircle size={15} color={'black'} data-tip='A votação ficará disponível para toda a comunidade.'/>
               </div>
 
               <div id="radio-input">
                 <input type="radio" id="public" name="visibility" value="privada" />
-                <p>{CREATE_POLL.PRIVATE}</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p id="title-visibility"><b>Permissão para votos</b></p>
-            <div id="visibility-poll" onChange={votesPermission.bind(this)}>
-              <div id="radio-input">
-                <input type="radio" id="public" name="permission" value="unica" />
-                <p>{CREATE_POLL.UNIQUE}</p>
-              </div>
-
-              <div id="radio-input">
-                <input type="radio" id="public" name="permission" value="multipla" />
-                <p>{CREATE_POLL.MULTIPLE}</p>
+                <p>{CREATE_POLL.PRIVATE}{'\u00A0'}</p>
+                <AiFillQuestionCircle size={15} color={'black'} data-tip='Apenas pessoas com o link da votação poderão votar.'/>
               </div>
             </div>
           </div>
