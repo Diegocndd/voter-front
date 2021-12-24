@@ -16,7 +16,6 @@ import {CREATE_POLL} from '../../constants/texts';
 import './styles.css';
 import './calendar.css';
 
-
 function CreatePoll() {
   const navigation = useNavigate();
   const [title, setTitle] = useState('');
@@ -118,11 +117,11 @@ function CreatePoll() {
 
     if (!thereIsError) {
       const {id_user} = dataUser;
-      let publicPoll = 0;
+      let publicPoll = 1;
       let free = 0;
 
       if (visibility === "privada") {
-        publicPoll = 1;
+        publicPoll = 0;
       }
 
       if (permission === "multipla") {
@@ -130,7 +129,7 @@ function CreatePoll() {
       }
   
       let errorServer = false;
-  
+      console.log('ssss', publicPoll);
       createPollAPI({
         title,
         id_user,

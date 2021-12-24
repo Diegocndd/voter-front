@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
 
 import Header from '../../Components/Header';
 import CreatedPollModal from '../../Components/Modal/CreatedPoll';

@@ -1,0 +1,68 @@
+#main-container-discover-polls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.public-poll-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 12px;
+    background-color: #F56038;
+    width: 95%;
+    color: white;
+}
+
+.title-public-poll {
+    font-size: 23px;
+}
+
+.qtyvotes-public-poll {
+    font-size: 17px;
+}
+
+.lateral-bar-poll-container {
+    background-color: #37364E;
+    display: inline-block;
+    width: 15px;
+    padding-right: -1px;
+}
+
+.container-main-poll {
+    padding-top: 28px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-main-poll:last-child {
+    padding-bottom: 28px;
+}
+
+#search-public-poll {
+    background-color: #EAEAEA;
+    margin-top: 28px;
+    width: 57%;
+    border-color: transparent;
+    border-radius: 13px;
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@media (max-width: 1200px) {
+    .container-main-poll {
+        padding-top: 28px;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #search-public-poll {
+        width: 74%;
+    }    
+}

@@ -2,6 +2,8 @@ import './styles.css';
 import Header from '../../Components/Header';
 import VotingImage from '../../assets/img/voting-homepage-voter.png';
 import TextingImage from '../../assets/img/texting-homepage-voter.png';
+import { useEffect } from 'react';
+
 import alt from '../../constants/altsImg';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -13,6 +15,8 @@ import {
   SUBMAIN_SUBTEXT_HP,
   DISCOVER_POLL_BUTTON
 } from '../../constants/texts';
+
+
 
 function Home() {
   const navigation = useNavigate();
@@ -41,8 +45,8 @@ function Home() {
       </div>
 
       <div id="second-content-homepage">
-        <img id="main-image-homepage" src={TextingImage} alt={alt.CHOOSING_IMAGE}></img>
-        <div id="header-text-main-content-container">
+        <img id="submain-image-homepage" src={TextingImage} alt={alt.CHOOSING_IMAGE}></img>
+        <div id="header-text-submain-content-container">
           <div id="header-text-container">
             <p id="header-text-main-content">
               {SUBMAIN_TEXT_HP}
@@ -56,6 +60,7 @@ function Home() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
