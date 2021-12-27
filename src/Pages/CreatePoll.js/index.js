@@ -7,9 +7,9 @@ import InputText from '../../Components/InputText';
 import { AiFillPlusCircle } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import Calendar from 'react-calendar';
-import TimeField from 'react-simple-timefield';
 import ReactTooltip from 'react-tooltip';
 import { AiFillQuestionCircle } from "react-icons/ai";
+import HeaderPoll from './HeaderPoll';
 
 import createPollAPI from '../../services/createPoll';
 import createAlternative from '../../services/createAlternative';
@@ -22,7 +22,9 @@ function CreatePoll() {
   const navigation = useNavigate();
   const [title, setTitle] = useState('');
   const [qtyOptions, setQtyOptions] = useState(1);
+  const [theme, setTheme] = useState('#F56038');
   const [visibility, setVisibility] = useState('');
+  const [themeImage, setThemeImage] = useState(3);
   const [limitDate, setLimitDate] = useState(new Date());
   const [timeDate, setTimeDate] = useState('');
   const [errorTitle, setErrorTitle] = useState(false);
@@ -128,7 +130,8 @@ function CreatePoll() {
         publicPoll,
         options,
         qty_options: qtyOptions,
-        limit_date: date
+        limit_date: date,
+        color: theme,
       })
         .then(res => {
           if (res.status === 200) {
@@ -154,82 +157,62 @@ function CreatePoll() {
     setTimeDate(event.target.value);
   }
 
+  const setThemeColor = (color) => {
+    setTheme(color);
+  }
+
   return (
     <div>
       <Header />
-      <ReactTooltip />
-      <div id="main-create-poll-container">
-        <p id="title-create-poll">{CREATE_POLL.CREATE_POLL}</p>
-        <div id="form-create-poll">
-          <InputText
-            titleInput="Título da Votação"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            titleBold
-          />
-          <p id="title-visibility"><b>{CREATE_POLL.DEADLINE}</b></p>
-          <div id="calendar-container">
-            <Calendar
-              onChange={e => setLimitDate(e)}
+      <HeaderPoll
+        setThemeColor={setThemeColor}
+        onTimeChange={onTimeChange}
+        setLimitDate={setLimitDate}
+        visibilityPoll={visibilityPoll}
+        createPoll={createPoll}
+      />
+      <div id='main-create-poll-container' style={{backgroundColor: theme}}>
+        <div id='content-create-poll'>
+          <p id="title-create-poll">{CREATE_POLL.CREATE_POLL}</p>
+          <div id="form-create-poll">
+            <InputText
+              titleInput="Título da Votação"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              titleBold
             />
-          </div>
 
-          <p id="title-visibility"><b>{CREATE_POLL.CLOSE_HOUR}</b></p>
-          <div id="input-hour-container">
-            <input type='time' id='input-hour' onChange={onTimeChange}></input>
-            {/* <TimeField value={'00:00  '} onChange={onTimeChange} id="input-hour" /> */}
-          </div>
-
-          <div>
-            <p id="title-visibility"><b>{CREATE_POLL.POLL_VISIBILITY}</b></p>
-            <div id="visibility-poll" onChange={visibilityPoll.bind(this)}>
-              <div id="radio-input">
-                <input type="radio" id="public" name="visibility" value="publica" />
-                <p>{CREATE_POLL.PUBLIC}{'\u00A0'}</p>
-                <AiFillQuestionCircle size={15} color={'black'} data-tip='A votação ficará disponível para toda a comunidade.'/>
-              </div>
-
-              <div id="radio-input">
-                <input type="radio" id="public" name="visibility" value="privada" />
-                <p>{CREATE_POLL.PRIVATE}{'\u00A0'}</p>
-                <AiFillQuestionCircle size={15} color={'black'} data-tip='Apenas pessoas com o link da votação poderão votar.'/>
-              </div>
+            <p id="title-visibility"><b>{CREATE_POLL.OPTIONS}</b></p>
+            <div id="options-poll">
+              {options.map(option => {
+                return (
+                  <div className="option-poll-container">
+                    <input
+                      type="text"
+                      value={options.value}
+                      placeholder={`Opção ${option.id}`}
+                      className="input-poll-option"
+                      onChange={e => updateOption(option.id, e.target.value)}
+                    />
+                    {option.id === options[options.length - 1].id ? (
+                      <div id="icons-add-remove">
+                        <AiFillPlusCircle className="icon-poll-create" color="#F56038" size={25} onClick={() => addOption()} />
+                        {option.id !== 1 ? <BsFillTrashFill className="icon-poll-create" color="#F56038" size={25} id="trash-icon" onClick={() => deleteOption(option.id)} /> : null}
+                      </div>
+                    ) : (
+                      <div style={{height: 25, width: 63}}>
+                        <BsFillTrashFill className="icon-poll-create" color="#F56038" size={25} id="trash-icon" onClick={() => deleteOption(option.id)} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
-
-          <p id="title-visibility"><b>{CREATE_POLL.OPTIONS}</b></p>
-          <div id="options-poll">
-            {options.map(option => {
-              return (
-                <div className="option-poll-container">
-                  <input
-                    type="text"
-                    value={options.value}
-                    placeholder={`Opção ${option.id}`}
-                    className="input-poll-option"
-                    onChange={e => updateOption(option.id, e.target.value)}
-                  />
-                  {option.id === options[options.length - 1].id ? (
-                    <div id="icons-add-remove">
-                      <AiFillPlusCircle className="icon-poll-create" color="#F56038" size={25} onClick={() => addOption()} />
-                      {option.id !== 1 ? <BsFillTrashFill className="icon-poll-create" color="#F56038" size={25} id="trash-icon" onClick={() => deleteOption(option.id)} /> : null}
-                    </div>
-                  ) : (
-                    <div style={{height: 25, width: 63}}>
-                      <BsFillTrashFill className="icon-poll-create" color="#F56038" size={25} id="trash-icon" onClick={() => deleteOption(option.id)} />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        {errorTitle ? <p id="alert-error-poll">{CREATE_POLL.ERROR_TITLE}</p> : null}
-        {errorQtyOptions ? <p id="alert-error-poll">{CREATE_POLL.ERROR_MINIMUN_OPTIONS}</p> : null}
-        {errorEmptyOption ? <p id="alert-error-poll">{CREATE_POLL.ERROR_DESCRIPT_OPTIONS}</p> : null}
-        {errorServer ? <p id="alert-error-poll">{CREATE_POLL.ERROR_GENERAL}</p> : null}
-        <div id="button-create-poll" onClick={() => createPoll()}>
-            <p>{CREATE_POLL.CREATE_POLL}</p>
+          {errorTitle ? <p id="alert-error-poll">{CREATE_POLL.ERROR_TITLE}</p> : null}
+          {errorQtyOptions ? <p id="alert-error-poll">{CREATE_POLL.ERROR_MINIMUN_OPTIONS}</p> : null}
+          {errorEmptyOption ? <p id="alert-error-poll">{CREATE_POLL.ERROR_DESCRIPT_OPTIONS}</p> : null}
+          {errorServer ? <p id="alert-error-poll">{CREATE_POLL.ERROR_GENERAL}</p> : null}
         </div>
       </div>
     </div>

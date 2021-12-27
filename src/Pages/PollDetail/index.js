@@ -1,13 +1,17 @@
-import './styles.css';
-import Header from '../../Components/Header';
-import QRCode from 'react-qr-code';
-
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import Header from '../../Components/Header';
+
+import QRCode from 'react-qr-code';
+import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
+
 import getPoll from '../../services/public/getPoll';
 import getAlternatives from '../../services/public/getAlternatives';
 import ChartPoll from '../../Components/ChartPoll';
 import deletePoll from '../../services/deletePoll';
-import { useNavigate } from 'react-router';
+import colors from '../../constants/colors';
+
+import './styles.css';
 
 function PollDetail() {
   const navigation = useNavigate();
@@ -15,11 +19,12 @@ function PollDetail() {
   const [alternatives, setAlternatives] = useState([]);
   const [chartAlternatives, setChartAlternatives] = useState(null);
   const [localTime, setLocalTime] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [limitDate, setLimitDate] = useState(null);
   const [isClosedDate, setIsClosedDate] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
-  const url = `http://192.168.15.3:3000/poll?id=${queryParams.get('id')}`;
+  const url = `http://192.168.15.5:3000/poll?id=${queryParams.get('id')}`;
 
   const formatAlternatives = (alternativesOpts) => {
     let alternativesFormat = [];
@@ -47,6 +52,12 @@ function PollDetail() {
           })
       })
       .catch(err => navigation('/dashboard'));
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 700);
   }, []);
 
   const ISOStringToNormalDate = (oldDate) => {
@@ -112,7 +123,12 @@ function PollDetail() {
               </div>
         </div>
       ) : null}
-      <div id="content-poll-detail">
+      {loading ? (
+        <div id='loading-container'>
+          <Hypnosis color={colors.MAIN_COLOR} width="100px" height="100px" />
+        </div>
+      ) : (
+        <div id="content-poll-detail">
         <p id="title-poll-detail">{pollData.title}</p>
         <div>
           {pollData.qty_votes === 0 ? (
@@ -138,16 +154,19 @@ function PollDetail() {
           <p id="url-poll-text">{url}</p>
         </div>
 
-        <div>
-          {chartAlternatives ? (
-            <ChartPoll alternatives={chartAlternatives} />
-          ) : null}
-        </div>
+        {pollData.qty_votes !== 0 ? (
+          <div>
+            {chartAlternatives ? (
+              <ChartPoll alternatives={chartAlternatives} />
+            ) : null}
+          </div>
+        ) : null}
 
         <div id="delete-poll-container" onClick={() => setOpenModal(true)}>
           <p>EXCLUIR VOTAÇÃO</p>
         </div>
       </div>
+      )}
     </div>
   );
 }

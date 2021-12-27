@@ -31,6 +31,7 @@
 }
 
 .container-main-poll {
+    cursor: pointer;
     padding-top: 28px;
     width: 60%;
     display: flex;
