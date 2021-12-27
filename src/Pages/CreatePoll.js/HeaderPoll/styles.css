@@ -1,0 +1,132 @@
+#container-header-poll {
+    background-color: white;
+    width: 100%;
+    color: '#181A18';
+    font-size: 20px;
+}
+
+#option-container-header-poll {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#option-create-poll-button {
+    margin-right: 40px;
+    background-color: #F56038;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 3px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    cursor: pointer
+}
+
+#option-container-header-poll:hover {
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+.text-option-header-poll {
+    margin-left: 10px;
+}
+
+.dropdown-theme-content {
+    background-color: gray;
+    z-index: 1;
+    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.03); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.03);
+}
+
+.theme-option-choose {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#header-theme-modal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#close-theme-modal {
+    cursor: pointer;
+}
+
+#content-theme-modal {
+    width: 400px;
+    height: 380px;
+    outline: none;
+    position: absolute;
+    background-color: white;
+    left: 0; 
+    right: 0;
+    top: 0; 
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto;
+    margin-bottom: auto;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+#content-settings-modal {
+    width: 500px;
+    height: 380px;
+    outline: none;
+    position: absolute;
+    background-color: white;
+    left: 0; 
+    right: 0;
+    top: 0; 
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto;
+    margin-bottom: auto;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.option-theme-modal {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#palette-options-themes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#icon-close-settings-modal {
+    float: right;
+    margin-top: 13px;
+    cursor: pointer;
+}

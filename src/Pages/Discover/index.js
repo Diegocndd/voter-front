@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import Header from '../../Components/Header';
 
@@ -8,6 +9,7 @@ import similarity from '../../utils/similarity';
 import './styles.css';
 
 function Discover() {
+  const navigation = useNavigate();
   const [polls, setPolls] = useState([]);
   const [currentPolls, setCurrentPolls] = useState([]);
   const [filteredPolls, setFilteredPolls] = useState([]);
@@ -18,7 +20,6 @@ function Discover() {
     if (remainderPolls.length > 0) {
       let arrAux = [...remainderPolls];
       let newValues = arrAux.splice(0, 10);
-      console.log(remainderPolls);
       setCurrentPolls(currentPolls.concat(newValues));
       setRemainderPolls(arrAux);
     }
@@ -69,6 +70,10 @@ function Discover() {
     }
   }
 
+  const goToPoll = (idPoll) => {
+    navigation(`/poll?id=${idPoll}`);
+  }
+
   useEffect(() => {
     filterPolls();
   }, [searchText]);
@@ -95,7 +100,7 @@ function Discover() {
           {filteredPolls.map(poll => {
             const {qty_votes} = poll;
             return (
-              <div className='container-main-poll'>
+              <div className='container-main-poll' onClick={() => goToPoll(poll.id_poll)}>
                 <div className='lateral-bar-poll-container'></div>
                 <div className='public-poll-container'>
                   <p className='title-public-poll'>{poll.title}</p>
@@ -110,7 +115,7 @@ function Discover() {
             {currentPolls.map(poll => {
               const {qty_votes} = poll;
               return (
-                <div className='container-main-poll'>
+                <div className='container-main-poll' onClick={() => goToPoll(poll.id_poll)}>
                   <div className='lateral-bar-poll-container'></div>
                   <div className='public-poll-container'>
                     <p className='title-public-poll'>{poll.title}</p>
