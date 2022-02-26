@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b426669b.chunk.css",
+    "main.js": "/static/js/main.bc15543a.chunk.js",
+    "main.js.map": "/static/js/main.bc15543a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0bf76b5e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0bf76b5e.js.map",
+    "static/css/2.dc2fdd27.chunk.css": "/static/css/2.dc2fdd27.chunk.css",
+    "static/js/2.53c55bd3.chunk.js": "/static/js/2.53c55bd3.chunk.js",
+    "static/js/2.53c55bd3.chunk.js.map": "/static/js/2.53c55bd3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.dc2fdd27.chunk.css.map": "/static/css/2.dc2fdd27.chunk.css.map",
+    "static/css/main.b426669b.chunk.css.map": "/static/css/main.b426669b.chunk.css.map",
+    "static/js/2.53c55bd3.chunk.js.LICENSE.txt": "/static/js/2.53c55bd3.chunk.js.LICENSE.txt",
+    "static/media/christmas.dfbcf837.jpg": "/static/media/christmas.dfbcf837.jpg",
+    "static/media/church.e372ac0d.jpg": "/static/media/church.e372ac0d.jpg",
+    "static/media/empty-dashboard.b654f88f.png": "/static/media/empty-dashboard.b654f88f.png",
+    "static/media/manifestation.dfd4b2c4.jpg": "/static/media/manifestation.dfd4b2c4.jpg",
+    "static/media/not-found-poll.c334f67a.png": "/static/media/not-found-poll.c334f67a.png",
+    "static/media/opinion-about-us.13c26b67.png": "/static/media/opinion-about-us.13c26b67.png",
+    "static/media/texting-homepage-voter.eb32145a.png": "/static/media/texting-homepage-voter.eb32145a.png",
+    "static/media/voting-homepage-voter.5e4f96f1.png": "/static/media/voting-homepage-voter.5e4f96f1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0bf76b5e.js",
+    "static/css/2.dc2fdd27.chunk.css",
+    "static/js/2.53c55bd3.chunk.js",
+    "static/css/main.b426669b.chunk.css",
+    "static/js/main.bc15543a.chunk.js"
+  ]
+}
