@@ -11,7 +11,7 @@ function SentEmail() {
   const queryParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    setChangedPassword(queryParams.get('concluded'));
+    setChangedPassword(window.location.hash.split('?')[1].split('=')[1]);
   }, []);
 
   return (

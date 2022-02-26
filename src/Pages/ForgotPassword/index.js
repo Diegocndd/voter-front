@@ -25,7 +25,7 @@ function ForgotPassword() {
   const queryParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    setIdPassword(queryParams.get('id'));
+    setIdPassword(window.location.hash.split('?')[1].split('=')[1]);
   }, []);
 
   const sendEmail = () => {

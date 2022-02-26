@@ -1,5 +1,5 @@
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Route,
     Routes,
 } from 'react-router-dom';
@@ -28,7 +28,7 @@ const App = () => {
             <PersistGate loading={null} persistor={persistor}>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route exact path="/" element={<Home />} />
                         <Route path="/create-account" element={<CreateAccount />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/about-us" element={<AboutUs />} />

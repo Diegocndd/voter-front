@@ -24,7 +24,7 @@ function PollDetail() {
   const [isClosedDate, setIsClosedDate] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
-  const url = `http://192.168.15.5:3000/poll?id=${queryParams.get('id')}`;
+  const url = `${process.env.REACT_APP_DOMAIN}/poll?id=${window.location.hash.split('?')[1].split('=')[1]}`;
 
   const formatAlternatives = (alternativesOpts) => {
     let alternativesFormat = [];
@@ -38,7 +38,7 @@ function PollDetail() {
   };
 
   useEffect(() => {
-    let idPoll = queryParams.get('id');
+    let idPoll = window.location.hash.split('?')[1].split('=')[1]
 
     getPoll(idPoll)
       .then(res => {
@@ -100,7 +100,7 @@ function PollDetail() {
   }
 
   const confirmDeletePoll = () => {
-    deletePoll(queryParams.get('id'))
+    deletePoll(window.location.hash.split('?')[1].split('=')[1])
       .then(res => {
         if (res.status === 200) {
           navigation('/dashboard');

@@ -44,7 +44,7 @@ function Poll() {
   }
 
   useEffect(() => {
-    let idPoll = queryParams.get('id');
+    let idPoll = window.location.hash.split('?')[1].split('=')[1];
     let responseFst, responseSnd, responseTrd = false;
 
     setIdPoll(idPoll);

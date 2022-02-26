@@ -21,8 +21,8 @@ function Dashboard() {
   const [createdPoll, setCreatedPoll] = useState(false);
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    let idPollCreated = queryParams.get('created_poll');
+    let idPollCreated = window.location.hash.split('?')[1]?.split('=')[1];
+
     if (idPollCreated) {
       setCreatedPoll(idPollCreated);
     }
