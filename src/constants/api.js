@@ -1,1 +1,2 @@
-export const IP_SERVICE = '192.168.15.5';
+export const IP_SERVICE = 'https://app-voter.herokuapp.com';
+// export const IP_SERVICE = 'http://localhost:5000';

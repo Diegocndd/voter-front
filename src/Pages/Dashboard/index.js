@@ -81,10 +81,12 @@ function Dashboard() {
 
   return (
     <div>
+      <div>
+        {createdPoll ? (
+          <CreatedPollModal idPoll={createdPoll} />
+        ) : null}
+      </div>
       <Header />
-      {createdPoll ? (
-        <CreatedPollModal idPoll={createdPoll} />
-      ) : null}
       <div id="main-dashboard-container">
         {!loading ? (
           <div id="dashboard-container">

@@ -138,7 +138,7 @@ function CreateAccount() {
         <div id="button-create-account" onClick={() => validateDataUser()}>
           <p>CRIAR CONTA</p>
         </div>
-        <div style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', display: 'flex', marginTop: 10}}>
+        {/* <div style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', display: 'flex', marginTop: 10}}>
           <GoogleLogin
             clientId={''}
             buttonText="Cadastre-se usando sua conta do Google"
@@ -146,7 +146,7 @@ function CreateAccount() {
             cookiePolicy="single_host_origin"
             isSignedIn
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

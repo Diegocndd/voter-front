@@ -1,6 +1,6 @@
 {
   "name": "voter",
-  "homepage": ".",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-meta-tags": "^1.0.1",
     "react-modal": "^3.14.4",
     "react-qr-code": "^2.0.3",
     "react-redux": "^7.2.6",

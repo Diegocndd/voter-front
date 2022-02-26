@@ -11,7 +11,7 @@ import './styles.css';
 
 function CreatedPollModal({ idPoll }) {
   const [modalIsOpen, setIsOpen] = useState(true);
-  let url = `http://${IP_SERVICE}:3000/poll?id=${idPoll}`;
+  let url = `${IP_SERVICE}:3000/poll?id=${idPoll}`;
   let encodedUrl = url;
 
   function closeModal() {
