@@ -24,7 +24,7 @@ function PollDetail() {
   const [isClosedDate, setIsClosedDate] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
-  const url = `${process.env.REACT_APP_DOMAIN}/poll?id=${window.location.hash.split('?')[1].split('=')[1]}`;
+  const url = `${process.env.REACT_APP_DOMAIN}/#/poll?id=${window.location.hash.split('?')[1].split('=')[1]}`;
 
   const formatAlternatives = (alternativesOpts) => {
     let alternativesFormat = [];

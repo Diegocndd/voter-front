@@ -11,7 +11,7 @@ import './styles.css';
 
 function CreatedPollModal({ idPoll }) {
   const [modalIsOpen, setIsOpen] = useState(true);
-  let url = `${process.env.REACT_APP_DOMAIN}/poll?id=${idPoll}`;
+  let url = `${process.env.REACT_APP_DOMAIN}/#/poll?id=${idPoll}`;
   let encodedUrl = url;
 
   function closeModal() {
