@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
+import {Helmet} from 'react-helmet';
 
 import Header from '../../Components/Header';
 import ChatPoll from '../../Components/ChartPoll';
@@ -126,6 +127,10 @@ function Poll() {
 
   return (
     <div>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>{pollData.title ? pollData.title + ' | Voter' : 'Voter'}</title>
+      </Helmet>
       <Header />
       <div id='container-poll-general' style={{backgroundColor: colorPoll}}>
         <div id='container-public-poll'>
@@ -172,7 +177,7 @@ function Poll() {
                     )}
                   </div>  
                 ) : (
-                  <div style={{marginTop: -40}}>
+                  <div style={{marginTop: -40, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <p id="text-not-found-poll">Não encontramos a votação!</p>
                     <p id="subtext-not-found-poll">Verifique se o endereço está correto.</p>
                     <img src={NotFoundImage} id="not-found-image-poll" alt={alt.NOT_FOUND_POLL}></img>
