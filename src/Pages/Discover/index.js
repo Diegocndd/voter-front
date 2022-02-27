@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import Header from '../../Components/Header';
+import Hypnosis from "react-cssfx-loading/lib/Hypnosis";
 
 import getPublicPolls from '../../services/public/getPublicPolls';
 import similarity from '../../utils/similarity';
+import colors from '../../constants/colors';
 
 import './styles.css';
 
@@ -15,6 +17,7 @@ function Discover() {
   const [filteredPolls, setFilteredPolls] = useState([]);
   const [remainderPolls, setRemainderPolls] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [loadingData, setLoadingData] = useState(true);
 
   const loadMoreData = () => {
     if (remainderPolls.length > 0) {
@@ -28,11 +31,13 @@ function Discover() {
   useEffect(() => {
     getPublicPolls()
       .then(res => {
+        console.log(res)
         if (res.status === 200) {
           setPolls([...res.data]);
           let dataPoll = res.data;
           setCurrentPolls(dataPoll.splice(0, 10));
           setRemainderPolls(dataPoll);
+          setLoadingData(false);
         }
       })
   }, []);
@@ -95,24 +100,11 @@ function Discover() {
           onChange={e => setSearchText(e.target.value)}
         >
         </input>
-        {searchText !== '' ? (
+        {!loadingData ? (
           <>
-          {filteredPolls.map(poll => {
-            const {qty_votes} = poll;
-            return (
-              <div className='container-main-poll' onClick={() => goToPoll(poll.id_poll)}>
-                <div className='lateral-bar-poll-container'></div>
-                <div className='public-poll-container'>
-                  <p className='title-public-poll'>{poll.title}</p>
-                  <p className='qtyvotes-public-poll'>{qty_votes === 0 ? 'Nenhum voto' : `${qty_votes} voto`}{qty_votes > 1 ? 's' : ''}</p>
-                </div>
-              </div>
-            )
-          })}
-        </>            
-        ) : (
-          <>
-            {currentPolls.map(poll => {
+            {searchText !== '' ? (
+            <>
+            {filteredPolls.map(poll => {
               const {qty_votes} = poll;
               return (
                 <div className='container-main-poll' onClick={() => goToPoll(poll.id_poll)}>
@@ -124,7 +116,28 @@ function Discover() {
                 </div>
               )
             })}
+          </>            
+          ) : (
+            <>
+              {currentPolls.map(poll => {
+                const {qty_votes} = poll;
+                return (
+                  <div className='container-main-poll' onClick={() => goToPoll(poll.id_poll)}>
+                    <div className='lateral-bar-poll-container'></div>
+                    <div className='public-poll-container'>
+                      <p className='title-public-poll'>{poll.title}</p>
+                      <p className='qtyvotes-public-poll'>{qty_votes === 0 ? 'Nenhum voto' : `${qty_votes} voto`}{qty_votes > 1 ? 's' : ''}</p>
+                    </div>
+                  </div>
+                )
+              })}
           </>
+        )}
+          </>
+        ) : (
+        <div id="loading_icon">
+          <Hypnosis color={colors.MAIN_COLOR} width="100px" height="100px" />
+        </div>
         )}
       </div>
     </div>
