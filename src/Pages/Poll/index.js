@@ -39,7 +39,7 @@ function Poll() {
   const [userVoted, setUserVoted] = useState(false);
   const [chosenAlternativeId, setChosenAlternativeId] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
-
+  const contentMetaTage = `${pollCreator} quer saber sua opinião!`;
   const loadData = (responseFst, responseSnd, responseTrd) => {
     if (responseFst && responseSnd && responseTrd) setLoadingData(false);
   }
@@ -130,6 +130,7 @@ function Poll() {
       <Helmet>
           <meta charSet="utf-8" />
           <title>{pollData.title ? pollData.title + ' | Voter' : 'Voter'}</title>
+          <meta name="description" content={contentMetaTage} />
       </Helmet>
       <Header />
       <div id='container-poll-general' style={{backgroundColor: colorPoll}}>
