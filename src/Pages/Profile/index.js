@@ -31,8 +31,8 @@ function Profile() {
   const [surname, setSurname] = useState(userData.surname);
   const [email, setEmail] = useState(userData.email);
   const [dateBirth, setDateBirth] = useState(formateDate(userData.birth));
-  const [password, setPassword] = useState(userData.password);
-  const [confirmPassword, setConfirmPassword] = useState(userData.password);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState(userData.username);
   const [errorEmpty, setErrorEmpty] = useState(false);
   const [errorLengthPassword, setErrorLengthPassword] = useState(false);
