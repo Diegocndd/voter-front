@@ -87,8 +87,7 @@
 }
 
 #content-settings-modal {
-    width: 500px;
-    height: 380px;
+    max-width: 500px;
     outline: none;
     position: absolute;
     background-color: white;
@@ -106,6 +105,20 @@
     padding-right: 30px;
     padding-top: 10px;
     padding-bottom: 20px;
+}
+
+#error-container-settings {
+    background-color: pink;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#alert-error-poll-settings {
+    font-size: 17px;
+    color: red;
+    font-weight: bold;
 }
 
 .option-theme-modal {

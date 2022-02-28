@@ -28,8 +28,11 @@ function CreatePoll() {
   const [limitDate, setLimitDate] = useState(new Date());
   const [timeDate, setTimeDate] = useState('');
   const [errorTitle, setErrorTitle] = useState(false);
+  const [displayModalSettings, setDisplayModalSettings] = useState(false);
   const [errorServer, setErrorServer] = useState(false);
   const [errorQtyOptions, setErrorQtyOptions] = useState(false);
+  const [errorInvalidDate, setErrorInvalidDate] = useState(false);
+  const [errorVisibility, setErrorVisibility] = useState(false);
   const [errorEmptyOption, setErrorEmptyOption] = useState(false);
   const [options, setOptions] = useState([{
     id: 1,
@@ -71,6 +74,10 @@ function CreatePoll() {
     setVisibility(event.target.value);
   }
 
+  const isValidDate = (d) => {
+    return d instanceof Date && !isNaN(d);
+  }
+
   const createPoll = () => {
     const hour = timeDate.split(':')[0] - 3;
     const minute = timeDate.split(':')[1];
@@ -98,6 +105,22 @@ function CreatePoll() {
     setErrorQtyOptions(false);
     setErrorTitle(false);
     setErrorEmptyOption(false);
+    
+    if (visibility === '') {
+      setErrorVisibility(true);
+      setDisplayModalSettings(true);
+      thereIsError = true;
+    } else {
+      setErrorVisibility(false);
+    }
+    
+    if (!isValidDate(limitDate)) {
+      setDisplayModalSettings(true);
+      setErrorInvalidDate(true);
+      thereIsError = true;
+    } else {
+      setErrorInvalidDate(false);
+    }
 
     if (qtyOptions < 2) {
       setErrorQtyOptions(true);
@@ -124,32 +147,32 @@ function CreatePoll() {
   
       let errorServer = false;
 
-      createPollAPI({
-        title,
-        id_user,
-        publicPoll,
-        options,
-        qty_options: qtyOptions,
-        limit_date: date,
-        color: theme,
-      })
-        .then(res => {
-          if (res.status === 200) {
-            const idPoll = parseInt(res.data, 10);
-            options.forEach(option => {
-              createAlternative({description: option.value, id_poll: idPoll})
-                .catch(err => {
-                  errorServer = true;
-                  setErrorServer(true);
-                });
-            });
+      // createPollAPI({
+      //   title,
+      //   id_user,
+      //   publicPoll,
+      //   options,
+      //   qty_options: qtyOptions,
+      //   limit_date: date,
+      //   color: theme,
+      // })
+      //   .then(res => {
+      //     if (res.status === 200) {
+      //       const idPoll = parseInt(res.data, 10);
+      //       options.forEach(option => {
+      //         createAlternative({description: option.value, id_poll: idPoll})
+      //           .catch(err => {
+      //             errorServer = true;
+      //             setErrorServer(true);
+      //           });
+      //       });
 
-            if (!errorServer) {
-              navigation('/dashboard?created_poll=' + idPoll);
-            }
-          }
-        })
-        .catch(err => setErrorServer(true));
+      //       if (!errorServer) {
+      //         navigation('/dashboard?created_poll=' + idPoll);
+      //       }
+      //     }
+      //   })
+      //   .catch(err => setErrorServer(true));
     }
   }
 
@@ -161,15 +184,23 @@ function CreatePoll() {
     setTheme(color);
   }
 
+  const closeModalSettings = () => {
+    setDisplayModalSettings(false);
+  };
+
   return (
     <div>
       <Header />
       <HeaderPoll
+        displayModalSettings={displayModalSettings}
+        closeModalSettings={closeModalSettings}
         setThemeColor={setThemeColor}
         onTimeChange={onTimeChange}
         setLimitDate={setLimitDate}
         visibilityPoll={visibilityPoll}
         createPoll={createPoll}
+        errorInvalidDate={errorInvalidDate}
+        errorVisibility={errorVisibility}
       />
       <div id='main-create-poll-container' style={{backgroundColor: theme}}>
         <div id='content-create-poll'>

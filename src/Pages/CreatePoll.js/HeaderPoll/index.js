@@ -23,13 +23,29 @@ const colors = [['#FFAA3C', '#4A4F74', '#FA9494', '#984063'], ['#007AFF', '#4CD9
 function HeaderPoll(props) {
   const [modalTheme, setModalTheme] = useState(false);
   const [modalSettings, setModalSettings] = useState(false);
-  const {onTimeChange, setThemeColor, setLimitDate, visibilityPoll, createPoll} = props;
+  const {
+    onTimeChange,
+    setThemeColor,
+    setLimitDate,
+    visibilityPoll,
+    createPoll,
+    displayModalSettings,
+    closeModalSettings,
+    errorInvalidDate,
+    errorVisibility,
+  } = props;
+
+  useEffect(() => {
+    setModalSettings(displayModalSettings);
+  }, [displayModalSettings]);
 
   return (
-    <div id='container-header-poll' style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+    <div id='container-header-poll' style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: '100%'}}>
       <ReactTooltip />
       <div id='option-container-header-poll' className='dropdown-option' onClick={() => {
-        if (modalSettings) setModalSettings(false);
+        if (modalSettings) {
+          setModalSettings(false);
+        }
         setModalTheme(!modalTheme);
       }}>
         <MdColorLens color='#181A18' size={22} />
@@ -67,8 +83,15 @@ function HeaderPoll(props) {
       ) : null}
 
       {modalSettings ? (
-        <div id='content-settings-modal'>
-          <VscChromeClose color='#000' size={28} id='icon-close-settings-modal' onClick={() => setModalSettings(false)} /> 
+        <div id='content-settings-modal' style={{height: errorInvalidDate || errorVisibility ? 500 : 400}}>
+          <VscChromeClose
+            color='#000'
+            size={28} id='icon-close-settings-modal'
+            onClick={() => {
+              setModalSettings(false);
+              closeModalSettings();
+            }}
+          /> 
           <p id="title-visibility"><b>{CREATE_POLL.DEADLINE}</b></p>
           <div id="calendar-container">
             <div id='datetime-input'>
@@ -99,6 +122,11 @@ function HeaderPoll(props) {
                 <AiFillQuestionCircle size={15} color={'black'} data-tip='Apenas pessoas com o link da votação poderão votar.'/>
               </div>
             </div>
+          </div>
+
+          <div id="error-container-settings">
+            {errorInvalidDate ? <p id="alert-error-poll-settings">Insira uma data válida com horário!</p> : null}
+            {errorVisibility ? <p id="alert-error-poll-settings">Defina se sua votação será pública ou privada!</p> : null}
           </div>
         </div>
       ) : null}
