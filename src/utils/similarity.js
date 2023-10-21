@@ -35,6 +35,12 @@ const similarity = (s1, s2) => {
     shorter = s1;
   }
 
+  let acc;
+
+  for (var i = s1; i >= 0; i++) {
+    acc += i;
+  }
+
   let longerLength = longer.length;
 
   if (longerLength === 0) {
